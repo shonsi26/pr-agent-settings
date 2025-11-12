@@ -1,0 +1,177 @@
+# =========================
+# Global PR-Agent settings
+# =========================
+
+[config]
+# Core AI behavior
+model = "gpt-4.1-mini"           # Change to your actual model if needed
+temperature = 0.2
+max_model_tokens = 32000
+large_patch_policy = "clip"       # or "skip"
+
+# Show effective config in the output
+output_relevant_configurations = true
+
+# Optional: org-wide ignore patterns
+ignore_pr_title = ["^WIP", "^Draft"]
+ignore_repositories = []          # e.g. ["^experimental-"]
+
+# =========================
+# Review tool configuration
+# =========================
+
+[pr_reviewer]
+# General behavior
+num_max_findings = 6
+persistent_comment = true
+publish_output_no_suggestions = true
+final_update_message = true
+
+# Review coverage
+require_tests_review = true
+require_security_review = true
+require_ticket_analysis_review = true
+require_estimate_effort_to_review = false
+require_todo_scan = true
+require_score_review = false
+
+# Incremental review defaults
+require_all_thresholds_for_incremental_review = false
+minimal_commits_for_incremental_review = 1
+minimal_minutes_for_incremental_review = 15
+
+# Labeling
+enable_review_labels_security = true
+enable_review_labels_effort = true
+
+# Org-wide review instructions
+extra_instructions = """
+- Prefer small, actionable comments.
+- Focus on correctness, security, and performance.
+- Enforce consistent logging, error handling, and naming.
+- Flag missing or weak tests for critical logic.
+"""
+
+# =========================
+# Description tool configuration
+# =========================
+
+[pr_description]
+# Publishing behavior
+publish_labels = true
+publish_description_as_comment = false
+publish_description_as_comment_persistent = true
+
+# Content style
+use_bullet_points = true
+generate_ai_title = true
+enable_pr_type = true
+add_original_user_description = true
+enable_pr_diagram = true
+
+# Large PR behavior
+enable_large_pr_handling = true
+max_ai_calls = 4
+async_ai_calls = true
+
+# File list formatting
+enable_semantic_files_types = true
+collapsible_file_list = "adaptive"         # "always", "never", or "adaptive"
+collapsible_file_list_threshold = 6
+inline_file_summary = false
+
+# =========================
+# Code suggestions (/improve)
+# =========================
+
+[pr_code_suggestions]
+# Context / token budget
+max_context_tokens = 24000
+
+# Suggestion scoring
+suggestions_score_threshold = 0
+new_score_mechanism_th_high = 9
+new_score_mechanism_th_medium = 7
+
+# Publishing behavior
+commitable_code_suggestions = true
+dual_publishing_score_threshold = 8
+
+# Extended analysis
+auto_extended_mode = true
+num_code_suggestions_per_chunk = 4
+max_number_of_calls = 4
+
+# =========================
+# GitHub App automation
+# =========================
+
+[github_app]
+# When to react on PR lifecycle
+handle_pr_actions = ["opened", "reopened", "ready_for_review"]
+
+# Commands to run automatically on new PRs
+pr_commands = [
+  "/describe",
+  "/review",
+  "/improve"
+]
+
+# Push-trigger behavior (new commits on open PR)
+handle_push_trigger = true
+push_commands = [
+  "/describe",
+  "/review"
+]
+
+# Reduce noise
+push_trigger_ignore_bot_commits = true
+push_trigger_ignore_merge_commits = true
+push_trigger_wait_for_initial_review = true
+push_trigger_pending_tasks_backlog = true
+push_trigger_pending_tasks_ttl = 300
+
+# GitHub App meta
+app_name = "pr-agent"
+deployment_type = "user"
+bot_user = "github-actions[bot]"
+ignore_bot_pr = true
+
+# =========================
+# GitLab automation (if used)
+# =========================
+
+[gitlab]
+pr_commands = [
+  "/describe",
+  "/review",
+  "/improve"
+]
+
+handle_push_trigger = true
+push_commands = [
+  "/describe",
+  "/review"
+]
+
+# Example self-hosted settings
+# url = "https://gitlab.example.com"
+# ssl_verify = true
+
+# =========================
+# Bitbucket Cloud App automation (if used)
+# =========================
+
+[bitbucket_app]
+pr_commands = [
+  "/describe",
+  "/review",
+  "/improve"
+]
+
+handle_push_trigger = true
+avoid_full_files = true
+push_commands = [
+  "/describe",
+  "/review"
+]
