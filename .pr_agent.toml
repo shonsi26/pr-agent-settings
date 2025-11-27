@@ -136,7 +136,7 @@ push_trigger_pending_tasks_ttl = 300
 app_name = "pr-agent"
 deployment_type = "user"
 bot_user = "github-actions[bot]"
-ignore_bot_pr = false
+ignore_bot_pr = true
 
 # =========================
 # GitLab automation (if used)
