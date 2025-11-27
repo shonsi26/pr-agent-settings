@@ -126,7 +126,7 @@ push_commands = [
 ]
 
 # Reduce noise
-push_trigger_ignore_bot_commits = true
+push_trigger_ignore_bot_commits = false
 push_trigger_ignore_merge_commits = true
 push_trigger_wait_for_initial_review = true
 push_trigger_pending_tasks_backlog = true
@@ -136,7 +136,7 @@ push_trigger_pending_tasks_ttl = 300
 app_name = "pr-agent"
 deployment_type = "user"
 bot_user = "github-actions[bot]"
-ignore_bot_pr = true
+ignore_bot_pr = false
 
 # =========================
 # GitLab automation (if used)
