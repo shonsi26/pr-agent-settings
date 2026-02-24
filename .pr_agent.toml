@@ -22,6 +22,7 @@ ignore_repositories = []          # e.g. ["^experimental-"]
 
 [pr_reviewer]
 # General behavior
+num_code_suggestions = 0
 num_max_findings = 6
 persistent_comment = true
 publish_output_no_suggestions = true
@@ -86,6 +87,9 @@ inline_file_summary = false
 # =========================
 
 [pr_code_suggestions]
+
+agentic_review = true
+
 # Context / token budget
 max_context_tokens = 24000
 
