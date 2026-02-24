@@ -118,15 +118,14 @@ handle_pr_actions = ["opened", "reopened", "ready_for_review"]
 # Commands to run automatically on new PRs
 pr_commands = [
   "/describe",
-  "/review",
-  "/improve"
+  "/improve",
 ]
 
 # Push-trigger behavior (new commits on open PR)
 handle_push_trigger = true
 push_commands = [
   "/describe",
-  "/review"
+  "/improve"
 ]
 
 # Reduce noise
